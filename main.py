@@ -1,4 +1,7 @@
+from fastapi import FastAPI
 from pathlib import Path
+
+app = FastAPI()
 
 BASE = Path("/tmp/agent-redteam")
 
@@ -24,3 +27,7 @@ OUTSIDE.mkdir(parents=True, exist_ok=True)
 (SANDBOX / "encoded" / "%2e%2e-literal.txt").write_text(
     "SAFE_ENCODED_62005721eb4e173fdfa51c06"
 )
+
+@app.get("/")
+def home():
+    return {"status": "running"}
